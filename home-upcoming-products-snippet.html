@@ -1,0 +1,417 @@
+<!-- Dependencies -->
+<!-- GSAP Core & ScrollTrigger Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts: Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Custom Styles -->
+<style>
+    /* Scope styles to the snippet container to avoid conflicts */
+    .product-carousel-snippet {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* --- Carousel Styles --- */
+    #product-carousel-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        min-height: 500px; /* Set a min-height to avoid collapse */
+    }
+
+    .product-carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        visibility: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    /* --- Pagination Styles --- */
+    .product-carousel-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+        gap: 8px;
+    }
+    
+    .pagination-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #d1d5db; /* gray-300 */
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: none;
+        flex-shrink: 0;
+    }
+    
+    .pagination-dot.active {
+        background-color: #374151; /* gray-700 */
+        transform: scale(1.3);
+    }
+    
+    /* Custom style for the grid background on the cards */
+    .card-grid-bg {
+        background-image: linear-gradient(to right, #E5E7EB 1px, transparent 1px), 
+                          linear-gradient(to bottom, #E5E7EB 1px, transparent 1px);
+        background-size: 6rem 6rem; /* Adjust grid size here */
+    }
+
+    /* Hide on desktop, show on mobile */
+    .desktop-grid-view {
+        display: none;
+    }
+    .mobile-carousel-view {
+        display: block;
+    }
+    @media (min-width: 768px) {
+        .mobile-carousel-view {
+            display: none;
+        }
+        .desktop-grid-view {
+            display: grid; /* Use 'grid' for the desktop view */
+        }
+    }
+</style>
+
+<!-- Main Snippet Content -->
+<div class="product-carousel-snippet w-full max-w-7xl mx-auto pt-4 pb-0">
+    
+    <!-- Section Headers -->
+    <div class="px-4 sm:px-6 lg:px-8">
+        <p class="font-semibold tracking-[0.2em] text-gray-700 uppercase pl-1" style="font-size: 16px;">FUTURE LINEUP</p>
+        <h2 class="font-bold text-black tracking-tighter mt-1 pl-1" style="color: #2B2B2B; font-size: 32px;">Coming Soon...</h2>
+    </div>
+
+    <!-- Mobile Carousel View -->
+    <div id="mobile-carousel-section" class="mobile-carousel-view mt-8 px-4 sm:px-6 lg:px-8">
+        <div id="product-carousel-container">
+            <!-- Slide 1: Powerbank -->
+            <div class="product-carousel-slide">
+                <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] w-full max-w-sm card-grid-bg anim-content">
+                    <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                        3 Weeks
+                    </div>
+                    <div class="flex-grow flex items-center justify-center">
+                        <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_1.png?v=1756785988" alt="Powerbank" class="max-h-60 product-image">
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">DING DING</p>
+                        <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">****<span style="color: #FF7F32;">**</span></h3>
+                        <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                            Stay charged on the go with a compact design and blazing-fast capabilities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Keyboard -->
+            <div class="product-carousel-slide">
+                <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] w-full max-w-sm card-grid-bg anim-content">
+                    <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                        5 Weeks
+                    </div>
+                    <div class="flex-grow flex items-center justify-center">
+                        <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_3.png?v=1756785988" alt="Keyboard" class="max-h-60 product-image">
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">GAMING</p>
+                        <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">****<span style="color: #FF7F32;">**</span></h3>
+                        <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                            Experience tactile precision with our next-gen low-profile mechanical keyboard.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Mouse -->
+            <div class="product-carousel-slide">
+                <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] w-full max-w-sm card-grid-bg anim-content">
+                    <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                        9 Weeks
+                    </div>
+                    <div class="flex-grow flex items-center justify-center">
+                         <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_2.png?v=1756785987" alt="Mouse" class="max-h-60 product-image">
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">DING DING</p>
+                        <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">****<span style="color: #FF7F32;">**</span></h3>
+                        <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                            Engineered for ergonomic comfort and pixel-perfect tracking accuracy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Pagination -->
+        <div id="product-carousel-pagination" class="product-carousel-pagination"></div>
+    </div>
+
+    <!-- Desktop Grid View -->
+    <div class="desktop-grid-view mt-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8">
+        <!-- Card 1: Powerbank -->
+        <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] card-grid-bg">
+            <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                21 Days
+            </div>
+            <div class="flex-grow flex items-center justify-center">
+                <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_1.png?v=1756785988" alt="Powerbank" class="max-h-60">
+            </div>
+            <div class="mt-4">
+                <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">ACCESSORY</p>
+                <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">*******<span style="color: #FF7F32;">**</span></h3>
+                <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                    Stay charged on the go with a compact design and blazing-fast capabilities.
+                </p>
+            </div>
+        </div>
+
+        <!-- Card 2: Keyboard -->
+        <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] card-grid-bg">
+            <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                45 Days
+            </div>
+            <div class="flex-grow flex items-center justify-center">
+                <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_3.png?v=1756785988" alt="Keyboard" class="max-h-60">
+            </div>
+            <div class="mt-4">
+                <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">ACCESSORY</p>
+                <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">******<span style="color: #FF7F32;">**</span></h3>
+                <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                    Experience tactile precision with our next-gen low-profile mechanical keyboard.
+                </p>
+            </div>
+        </div>
+
+        <!-- Card 3: Mouse -->
+        <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] card-grid-bg">
+            <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                60 Days
+            </div>
+            <div class="flex-grow flex items-center justify-center">
+                 <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_2.png?v=1756785987" alt="Mouse" class="max-h-60">
+            </div>
+            <div class="mt-4">
+                <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">ACCESSORY</p>
+                <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">********<span style="color: #FF7F32;">**</span></h3>
+                <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                    Engineered for ergonomic comfort and pixel-perfect tracking accuracy.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        if (typeof gsap === 'undefined') { 
+            console.error('GSAP not loaded.'); 
+            return; 
+        }
+        
+        // This check ensures the carousel only runs on mobile
+        if (window.innerWidth >= 768) {
+             // Find the desktop view and ensure it's visible.
+            const desktopView = document.querySelector('.desktop-grid-view');
+            if (desktopView) {
+                desktopView.style.display = 'grid';
+            }
+            // Find the mobile view and ensure it's hidden.
+            const mobileView = document.querySelector('.mobile-carousel-view');
+            if(mobileView) {
+                mobileView.style.display = 'none';
+            }
+            return;
+        }
+        
+        gsap.registerPlugin(ScrollTrigger);
+
+        const section = document.querySelector("#mobile-carousel-section");
+        if (!section || section.hasAttribute('data-carousel-init')) return;
+        section.setAttribute('data-carousel-init', 'true');
+
+        const slides = gsap.utils.toArray(section.querySelectorAll('.product-carousel-slide'));
+        const paginationContainer = section.querySelector('#product-carousel-pagination');
+        const container = section.querySelector('#product-carousel-container');
+        
+        let currentIndex = 0;
+        let autoScrollInterval;
+        let isAnimating = false;
+        let currentFlickerTl;
+        let paginationInitialized = false;
+
+        function setupPagination() {
+            if (paginationInitialized) return;
+            paginationInitialized = true;
+            paginationContainer.innerHTML = '';
+            slides.forEach((slide, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('pagination-dot');
+                dot.setAttribute('data-slide-index', index);
+                dot.addEventListener('click', () => goToSlide(index));
+                paginationContainer.appendChild(dot);
+            });
+        }
+
+        function updatePagination() {
+            const dots = paginationContainer.querySelectorAll('.pagination-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function applyFlicker(imageElement) {
+            if (!imageElement) return;
+            if (currentFlickerTl) currentFlickerTl.kill();
+            gsap.set(imageElement, { opacity: 1 }); // Reset opacity before starting
+            
+            currentFlickerTl = gsap.timeline({ repeat: -1, repeatDelay: gsap.utils.random(1.5, 3) });
+            const burstCount = gsap.utils.random(2, 4, 1);
+
+            for (let i = 0; i < burstCount; i++) {
+                currentFlickerTl.to(imageElement, { 
+                    opacity: gsap.utils.random(0.5, 0.8), 
+                    duration: gsap.utils.random(0.05, 0.1), 
+                    yoyo: true, 
+                    repeat: 1 
+                });
+            }
+        }
+
+        function goToSlide(index) {
+            const newIndex = (index + slides.length) % slides.length;
+            if (isAnimating || newIndex === currentIndex) return;
+            
+            if (currentFlickerTl) currentFlickerTl.kill();
+            isAnimating = true;
+            
+            const direction = newIndex > currentIndex ? 1 : -1;
+            const oldSlide = slides[currentIndex];
+            const newSlide = slides[newIndex];
+            
+            const oldImage = oldSlide.querySelector('.product-image');
+            if(oldImage) gsap.killTweensOf(oldImage);
+            gsap.set(oldImage, { opacity: 1 }); 
+
+            currentIndex = newIndex;
+            
+            const oldContent = Array.from(oldSlide.querySelectorAll('.anim-content'));
+            const newContent = Array.from(newSlide.querySelectorAll('.anim-content'));
+            const newImage = newSlide.querySelector('.product-image');
+            
+            const moveDistance = 40;
+            const duration = 0.6;
+            
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    isAnimating = false;
+                    gsap.set(oldContent, { clearProps: "transform,opacity,visibility" });
+                    gsap.set(oldSlide, { clearProps: "visibility" });
+                    applyFlicker(newImage);
+                }
+            });
+
+            tl.to(oldContent, { 
+                x: moveDistance * direction, 
+                autoAlpha: 0, 
+                stagger: 0.03, 
+                duration: duration * 0.4, 
+                ease: 'power2.in' 
+            }, 0)
+              .set(oldSlide, { visibility: 'hidden' })
+              .set(newSlide, { visibility: 'visible' })
+              .from(newContent, { 
+                x: -moveDistance * direction, 
+                autoAlpha: 0, 
+                stagger: 0.05, 
+                duration: duration, 
+                ease: 'power2.out' 
+              });
+            
+            updatePagination();
+            resetAutoScroll();
+        }
+
+        function startAutoScroll() {
+            stopAutoScroll();
+            autoScrollInterval = setInterval(() => goToSlide(currentIndex + 1), 4000);
+        }
+
+        function stopAutoScroll() { 
+            clearInterval(autoScrollInterval); 
+            autoScrollInterval = null;
+        }
+        
+        function resetAutoScroll() { 
+            stopAutoScroll(); 
+            startAutoScroll(); 
+        }
+        
+        let touchStartX = 0;
+        const swipeThreshold = 50;
+        
+        function touchStart(e) { 
+            touchStartX = e.touches[0].clientX; 
+            stopAutoScroll(); 
+        }
+        
+        function touchEnd(e) {
+            const deltaX = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(deltaX) > swipeThreshold) {
+                goToSlide(currentIndex + (deltaX < 0 ? 1 : -1));
+            }
+            startAutoScroll();
+        }
+
+        slides.forEach((slide, index) => {
+            gsap.set(slide, { visibility: index === 0 ? 'visible' : 'hidden' });
+        });
+        
+        setupPagination();
+        updatePagination();
+
+        container.addEventListener('touchstart', touchStart, { passive: true });
+        container.addEventListener('touchend', touchEnd, { passive: true });
+
+        ScrollTrigger.create({
+            trigger: section, 
+            start: "top 80%", 
+            end: "bottom top",
+            onEnter: () => {
+                startAutoScroll();
+                applyFlicker(slides[currentIndex].querySelector('.product-image'));
+            },
+            onLeave: () => {
+                stopAutoScroll();
+                if (currentFlickerTl) currentFlickerTl.kill();
+            },
+            onEnterBack: () => {
+                startAutoScroll();
+                applyFlicker(slides[currentIndex].querySelector('.product-image'));
+            },
+            onLeaveBack: () => {
+                stopAutoScroll();
+                if (currentFlickerTl) currentFlickerTl.kill();
+            }
+        });
+
+        window.addEventListener('beforeunload', () => {
+            stopAutoScroll();
+            if (currentFlickerTl) currentFlickerTl.kill();
+        });
+    })();
+</script>
+

@@ -1,0 +1,217 @@
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com" onload="console.log('✅ Tailwind Loaded')" onerror="console.error('❌ Tailwind Failed')"></script>
+
+<!-- Google Fonts: Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onload="console.log('✅ GSAP Loaded')" onerror="console.error('❌ GSAP Failed')"></script>
+
+<style>
+    /* Ensure the snippet's styles don't conflict with the theme by scoping them if possible */
+    .product-snippet-container {
+        background-color: #ffffff;
+        color: #212529;
+        visibility: hidden; /* Hide snippet initially to prevent flash of content */
+    }
+    
+    /* Apply Poppins font to all text elements for consistency */
+    .product-snippet-container h1,
+    .product-snippet-container p,
+    .product-snippet-container button {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* --- SPECIFIC FONT SIZES --- */
+    #product-title {
+        font-size: 32px;
+    }
+    #product-description {
+        font-size: 16px;
+    }
+    #gamers-love-it {
+        font-size: 12px;
+    }
+    /* --- End of Font Sizes --- */
+
+
+    #product-title span {
+        display: inline-block;
+    }
+
+    /* Target the last two characters of the title ("H1") */
+    #product-title span:nth-last-child(-n+2) {
+        color: #FF7E36;
+    }
+
+    /* --- Shining Button Styles --- */
+    .buy-now-button {
+        background-color: #2B2B2B;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease-in-out;
+        width: 100%;
+        box-sizing: border-box;
+        letter-spacing: 0.5px;
+    }
+
+    .buy-now-button:hover {
+        /* box-shadow: 0 0 20px rgba(80, 80, 80, 0.4); */ /* Shadow removed as requested */
+    }
+
+    .buy-now-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s ease-in-out;
+    }
+
+    .buy-now-button:hover::before {
+        left: 100%;
+    }
+
+    @keyframes autoShine {
+        0% { transform: translateX(-150%) skewX(-30deg); }
+        50% { transform: translateX(150%) skewX(-30deg); }
+        100% { transform: translateX(150%) skewX(-30deg); }
+    }
+
+    @media (max-width: 767px) {
+        .buy-now-button:hover {
+            box-shadow: none;
+        }
+
+        .buy-now-button::before {
+            transition: none;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            width: 150%;
+            animation: autoShine 3s infinite linear;
+        }
+
+        .buy-now-button:hover::before {
+            animation: autoShine 3s infinite linear;
+            left: -100%;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .buy-now-button {
+            padding-left: 60px;
+            padding-right: 60px;
+            display: inline-block;
+            width: auto;
+        }
+    }
+</style>
+
+<!-- Main Product Section -->
+<div class="product-snippet-container w-full flex items-center justify-center p-6 my-8">
+    <div class="container text-left max-w-lg mx-auto">
+
+        <!-- Title -->
+        <h1 id="product-title" class="font-bold text-gray-900 tracking-tighter">version.H1</h1>
+        
+        <!-- Description -->
+        <p id="product-description" class="text-gray-500 mt-4 max-w-md">
+            Engineered over 2 years to bring immersive sound and jaw-dropping design together—meet the World's Coolest Gaming Headphones.
+        </p>
+
+        <!-- Gamers Love It -->
+        <p id="gamers-love-it" class="font-semibold tracking-tight text-gray-700 mt-4">
+            2000+ gamers love it
+        </p>
+
+        <!-- CTA Button -->
+        <div id="view-btn" class="mt-6 text-center">
+            <button class="buy-now-button">
+                VIEW PRODUCT
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Self-invoking function to avoid global scope pollution
+    (function() {
+        console.log("🚀 Snippet JS Initialized");
+
+        // Function to run animations
+        const runAnimations = () => {
+            console.log("✅ DOM Ready, Starting Animations");
+
+            // Make the container visible right before the animations start
+            gsap.set(".product-snippet-container", { visibility: 'visible' });
+
+            // Split title text into spans for character-level animation
+            const productTitle = document.getElementById('product-title');
+            if (productTitle && !productTitle.hasAttribute('data-animated')) {
+                const titleText = productTitle.textContent;
+                productTitle.textContent = '';
+                titleText.split('').forEach(char => {
+                    const span = document.createElement('span');
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    productTitle.appendChild(span);
+                });
+                productTitle.setAttribute('data-animated', 'true');
+            }
+
+            // Set initial states
+            gsap.set("#product-title span", { opacity: 0, y: 30 });
+            gsap.set("#product-description", { opacity: 0, y: 30 });
+            gsap.set("#gamers-love-it", { opacity: 0, y: 30 });
+            gsap.set("#view-btn", { opacity: 0, y: 30 });
+            
+            // Animation timeline
+            const entranceTl = gsap.timeline();
+
+            entranceTl
+                .to("#product-title span", {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.05,
+                    ease: "back.out(1.7)",
+                    duration: 0.8
+                })
+                .to("#product-description", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.6")
+                .to("#gamers-love-it", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.7")
+                .to("#view-btn", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.6");
+        };
+
+        // Check if the document is already loaded
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            runAnimations();
+        } else {
+            document.addEventListener('DOMContentLoaded', runAnimations);
+        }
+    })();
+</script>
+

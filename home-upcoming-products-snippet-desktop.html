@@ -1,0 +1,96 @@
+<!-- Dependencies -->
+<!-- GSAP Core & ScrollTrigger Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts: Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Custom Styles -->
+<style>
+    /* Scope styles to the snippet container to avoid conflicts */
+    .product-carousel-snippet {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Custom style for the grid background on the cards */
+    .card-grid-bg {
+        background-image: linear-gradient(to right, #E5E7EB 1px, transparent 1px), 
+                          linear-gradient(to bottom, #E5E7EB 1px, transparent 1px);
+        background-size: 6rem 6rem; /* Adjust grid size here */
+    }
+
+    /* Hide mobile view */
+    .mobile-carousel-view {
+        display: none;
+    }
+</style>
+
+<!-- Main Snippet Content -->
+<div class="product-carousel-snippet w-full max-w-7xl mx-auto pt-4 pb-0">
+    
+    <!-- Section Headers -->
+    <div class="px-4 sm:px-6 lg:px-8 text-center">
+        <p class="font-semibold tracking-[0.2em] text-gray-700 uppercase" style="font-size: 16px;">FUTURE LINEUP</p>
+        <h2 class="font-bold text-black tracking-tighter mt-1" style="color: #2B2B2B; font-size: 32px;">Coming Soon...</h2>
+    </div>
+
+    <!-- Desktop Grid View (3 Columns) -->
+    <div class="grid grid-cols-3 mt-12 gap-8 px-4 sm:px-6 lg:px-8">
+        <!-- Card 1: Powerbank -->
+        <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] card-grid-bg">
+            <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                21 Days
+            </div>
+            <div class="flex-grow flex items-center justify-center">
+                <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_1.png?v=1756785988" alt="Powerbank" class="max-h-60">
+            </div>
+            <div class="mt-4">
+                <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">ACCESSORY</p>
+                <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">*******<span style="color: #FF7F32;">**</span></h3>
+                <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                    Stay charged on the go with a compact design and blazing-fast capabilities.
+                </p>
+            </div>
+        </div>
+
+        <!-- Card 2: Keyboard -->
+        <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] card-grid-bg">
+            <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                45 Days
+            </div>
+            <div class="flex-grow flex items-center justify-center">
+                <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_3.png?v=1756785988" alt="Keyboard" class="max-h-60">
+            </div>
+            <div class="mt-4">
+                <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">ACCESSORY</p>
+                <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">******<span style="color: #FF7F32;">**</span></h3>
+                <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                    Experience tactile precision with our next-gen low-profile mechanical keyboard.
+                </p>
+            </div>
+        </div>
+
+        <!-- Card 3: Mouse -->
+        <div class="relative flex flex-col justify-between bg-[#FDFDFD] border border-gray-200 rounded-2xl p-6 h-[420px] card-grid-bg">
+            <div class="absolute top-4 right-4 text-white text-xs font-semibold px-3 py-1 rounded-md" style="background-color: #FF7F32;">
+                60 Days
+            </div>
+            <div class="flex-grow flex items-center justify-center">
+                 <img src="https://cdn.shopify.com/s/files/1/0920/8800/9025/files/Remove_background_project_2.png?v=1756785987" alt="Mouse" class="max-h-60">
+            </div>
+            <div class="mt-4">
+                <p class="text-xs font-semibold tracking-widest text-gray-400 uppercase">ACCESSORY</p>
+                <h3 class="font-bold tracking-[0.2em] text-black mt-2" style="font-size: 32px;">********<span style="color: #FF7F32;">**</span></h3>
+                <p class="text-gray-500 mt-2" style="font-size: 12px;">
+                    Engineered for ergonomic comfort and pixel-perfect tracking accuracy.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
